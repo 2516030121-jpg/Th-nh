@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food House</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+}
+
+header{
+background:#ff5722;
+color:white;
+padding:20px;
+text-align:center;
+font-size:32px;
+font-weight:bold;
+box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+.menu{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+padding:40px;
+}
+
+.card{
+background:white;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.03);
+box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.info{
+padding:20px;
+text-align:center;
+}
+
+.price{
+color:#ff5722;
+font-size:24px;
+font-weight:bold;
+margin:10px 0;
+}
+
+button{
+background:#ff5722;
+border:none;
+color:white;
+padding:12px 25px;
+border-radius:30px;
+cursor:pointer;
+font-size:16px;
+transition:.3s;
+}
+
+button:hover{
+background:#e64a19;
+}
+
+.order{
+max-width:700px;
+margin:50px auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.2);
+}
+
+.order h2{
+text-align:center;
+margin-bottom:25px;
+}
+
+input,textarea{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+}
+
+iframe{
+width:100%;
+height:700px;
+border:none;
+margin-top:20px;
+border-radius:10px;
+}
+button:hover{
+background:#e64a19;
+}
+
+/* ===== CSS Popup bắt đầu từ đây ===== */
+
+.popup{
+
+display:none;
+
+position:fixed;
+
+left:0;
+
+top:0;
+
+width:100%;
+
+height:100%;
+
+background:rgba(0,0,0,.6);
+
+z-index:999;
+
+}
+
+.popup-content{
+
+background:white;
+
+width:350px;
+
+margin:70px auto;
+
+padding:25px;
+
+border-radius:15px;
+
+text-align:center;
+
+position:relative;
+
+animation:popup .3s;
+
+}
+
+.close{
+
+position:absolute;
+
+right:15px;
+
+top:10px;
+
+font-size:30px;
+
+cursor:pointer;
+
+}
+
+.popup img{
+
+margin:20px 0;
+
+border-radius:10px;
+
+}
+
+@keyframes popup{
+
+from{
+
+transform:scale(.7);
+
+opacity:0;
+
+}
+
+to{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+}
+
+/* ===== CSS Popup kết thúc ===== */
+
+</style>
+
+
+</head>
+<body>
+
+<header>
+🍔 FOOD HOUSE
+</header>
+
+<section class="menu">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591">
+<div class="info">
+<h2>Pizza Hải Sản</h2>
+<p class="price">250.000đ</p>
+<button onclick="chonMon('Pizza Hải Sản')">Đặt ngay</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd">
+<div class="info">
+<h2>Burger Bò</h2>
+<p class="price">120.000đ</p>
+<button onclick="chonMon('Burger Bò')">Đặt ngay</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec">
+<div class="info">
+<h2>Gà Rán</h2>
+<p class="price">95.000đ</p>
+<button onclick="chonMon('Gà Rán')">Đặt ngay</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1550547660-d9450f859349">
+<div class="info">
+<h2>Combo Đặc Biệt</h2>
+<p class="price">320.000đ</p>
+<button onclick="chonMon('Combo Đặc Biệt')">Đặt ngay</button>
+</div>
+</div>
+
+</section>
+
+<div class="order">
+
+<h2>Đặt hàng</h2>
+
+<form
+action="https://docs.google.com/forms/d/e/1FAIpQLScmUx6TPMrHXIV819t6-SWhq3bUaAAhkaYSpaGPzcu8_HdfZQ/formResponse"
+method="POST"
+target="_blank">
+
+    <input
+        id="food"
+        name="entry.224219170"
+        placeholder="Tên món"
+        readonly>
+
+    <input
+        name="entry.1339855925"
+        placeholder="Họ và tên"
+        required>
+
+    <input
+        name="entry.377232849"
+        placeholder="Số điện thoại"
+        required>
+
+    <textarea
+        name="entry.1137167225"
+        placeholder="Địa chỉ"
+        required></textarea>
+
+    <button
+	type="button"
+	onclick="moPopup()">
+        Đặt hàng
+    </button>
+
+</form>
+
+
+</div>
+<div id="popup" class="popup">
+
+    <div class="popup-content">
+
+        <span class="close" onclick="dongPopup()">&times;</span>
+
+        <h2>Thanh toán chuyển khoản</h2>
+
+        <img src="file:///C:/Users/Student/Downloads/images/qr.jpg" width="250">
+
+        <p><b>Ngân hàng:</b> MB Bank</p>
+
+        <p><b>STK:</b> 123456789</p>
+
+        <p><b>Chủ TK:</b> ĐẶNG NGỌC TIẾN THÀNH</p>
+
+        <button onclick="xacNhan()">Đã chuyển khoản</button>
+
+    </div>
+
+</div>
+<script>
+
+function chonMon(mon){
+document.getElementById("food").value=mon;
+window.scrollTo({
+top:document.querySelector(".order").offsetTop,
+behavior:"smooth"
+});
+}
+
+</script>
+<script>
+
+function moPopup() {
+    document.getElementById("popup").style.display = "block";
+}
+
+function dongPopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+function xacNhan() {
+    document.querySelector("form").submit();
+}
+
+function chonMon(mon) {
+    document.getElementById("food").value = mon;
+
+    document.querySelector(".order").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+</script>
+<script src="script.js"></script>
+</body>
+</html>
